@@ -1,0 +1,11 @@
+#cartContainer {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    grid-gap: 2%;
+  }
+  img {
+    width: 100%;
+  }
+  button {
+    padding: 10px;
+  }

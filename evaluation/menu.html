@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #dishContainer {
+        display: grid;
+        grid-template-columns: repeat(3, 30%);
+        grid-gap: 2%;
+      }
+      img {
+        width: 100%;
+      }
+      button{
+          padding: 10px;
+      }
+      h1{
+        display:inline-block;
+        background-color: red;
+        color: white;
+        padding: 10px;
+        margin-left: 90%;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 id="count"></h1>
+    <div id="dishContainer"></div>
+  </body>
+</html>
+
+<script>
+  let dishContainer = document.getElementById("dishContainer");
+
+  let meal_data=JSON.parse(localStorage.getItem("Meals")) || [];
+  console.log('meal_data:', meal_data)
+
+  let count=0;
+
+  if (meal_data.length!=0){
+      count=meal_data.length
+  }
+
+  let cart_count=document.getElementById("count")
+        cart_count.innerText =count;
+
+
+  
+ 
+
+  async function getItem() {
+    let res = await fetch(
+      "https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood"
+    );
+    let data = await res.json();
+    console.log("data:", data);
+
+    appendItmes(data.meals);
+  }
+
+  function appendItmes(item) {
+    item.forEach(function (el) {
+      let dish_div = document.createElement("div");
+
+      let meal = document.createElement("h3");
+      meal.innerText = el.strMeal;
+
+      let thumbnail = document.createElement("img");
+      thumbnail.src = el.strMealThumb;
+
+      let price = document.createElement("h3");
+      el.price=(Math.floor(Math.random() * 500) + 100)
+    //   price.innerText = `₹ ${Math.floor(Math.random() * 500) + 100}`;
+
+      price.innerText =`₹ ${el.price}`;
+
+      let cart = document.createElement("button");
+      cart.innerText = "Cart";
+
+      cart.addEventListener("click",function(){
+
+        cart_count.innerText =null;
+
+       
+        
+        meal_data.push(el)
+        localStorage.setItem("Meals",JSON.stringify(meal_data))
+        cart_count.innerText =count;
+      })
+
+      dish_div.append(thumbnail, meal, price, cart);
+
+      dishContainer.append(dish_div);
+    });
+  }
+
+  
+  getItem();
+</script>

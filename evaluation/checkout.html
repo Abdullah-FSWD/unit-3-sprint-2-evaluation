@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form{
+            width: 60%;
+            margin:auto;
+            text-align:center;
+        }
+        label {
+            width: 100px;
+            display: inline-block;
+            width: 200px;
+            margin-top:2%;
+        }
+        input{
+            padding:10px;
+            width: 200px;
+        }
+        button{
+            padding:10px;
+            margin-left: 50px;
+            margin-top:1.5%;
+            width: 40%;
+            text-align: center;
+            background-color: green;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <label for="">Enter Address</label>
+        <input type="text" placeholder="address">
+        <br>
+        <label for="">land Mark</label>
+        <input type="text" placeholder="land Mark">
+        <br>
+        <label for="">Mobile Number</label>
+        <input type="Number" placeholder="Mobile Number">
+        <br>
+        <label for="">Email Address</label>
+        <input type="text" placeholder="Email Address">
+        <br>
+        <button id="btn">Place Order</button>
+    </form>
+</body>
+</html>
+
+<script>
+
+let btn=document.getElementById("btn");
+
+btn.addEventListener("click",function(e) {
+    e.preventDefault();
+
+    setTimeout(function(){
+        alert("Your order is accepted")
+    },0)
+    setTimeout(function(){
+        alert("Your order is being cooked ")
+    },3000)
+    setTimeout(function(){
+        alert("Your order is ready")
+    },8000)
+    setTimeout(function(){
+        alert("Order out for delivery")
+    },10000)
+    setTimeout(function(){
+        alert("Order delivered")
+    },12000)
+    
+
+})
+    
+</script>
